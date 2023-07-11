@@ -5,16 +5,17 @@ LABEL maintainer="Vincent Vanhoucke <vanhoucke@google.com>"
 # Pillow needs libjpeg by default as of 3.0.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libjpeg8-dev \
-        curl \
+        wget \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
+    
+RUN apt-get install -y wget && libjpeg8-dev
 RUN pip install --upgrade pip
 RUN pip install scikit-learn Pillow
 
 # Download imageio from PyPI and install it from a local source
-RUN curl -sSL -o /tmp/imageio-2.4.1.tar.gz https://files.pythonhosted.org/packages/07/77/0a7d8db71a4c1f9e0ab3e307fd0182e4802c5c9ed187879f987e6048c548/imageio-2.4.1.tar.gz \
+RUN wget -O /tmp/imageio-2.4.1.tar.gz https://files.pythonhosted.org/packages/07/77/0a7d8db71a4c1f9e0ab3e307fd0182e4802c5c9ed187879f987e6048c548/imageio-2.4.1.tar.gz \
     && tar -xzf /tmp/imageio-2.4.1.tar.gz -C /tmp \
     && cd /tmp/imageio-2.4.1 \
     && python setup.py install \
