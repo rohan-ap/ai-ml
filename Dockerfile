@@ -15,12 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install scikit-learn Pillow
 
 # Download imageio from PyPI and install it from a local source
-RUN wget -O /tmp/imageio-2.4.1.tar.gz https://files.pythonhosted.org/packages/07/77/0a7d8db71a4c1f9e0ab3e307fd0182e4802c5c9ed187879f987e6048c548/imageio-2.4.1.tar.gz \
-    && tar -xzf /tmp/imageio-2.4.1.tar.gz -C /tmp \
-    && cd /tmp/imageio-2.4.1 \
-    && python setup.py install \
-    && cd / \
-    && rm -rf /tmp/imageio-2.4.1 /tmp/imageio-2.4.1.tar.gz
+RUN pip install imageio -y
 
 RUN rm -rf /notebooks/*
 ADD *.ipynb /notebooks/
