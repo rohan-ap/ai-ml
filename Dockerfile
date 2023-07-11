@@ -11,11 +11,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get install -y wget 
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip==21.1.3
 RUN pip install scikit-learn Pillow
 
-# Download imageio from PyPI and install it from a local source
-RUN pip install imageio 
+# Install dependencies for imageio
+RUN apt-get install -y libsm6 libxext6 libxrender-dev
+
+# Download imageio from PyPI and install it
+RUN pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org imageio 
 
 RUN rm -rf /notebooks/*
 ADD *.ipynb /notebooks/
