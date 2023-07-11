@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
     
-RUN apt-get install -y wget && libjpeg8-dev
+RUN apt-get install -y wget 
 RUN pip install --upgrade pip
 RUN pip install scikit-learn Pillow
 
