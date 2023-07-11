@@ -15,7 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install scikit-learn Pillow
 
 # Download imageio from PyPI and install it from a local source
-RUN pip install imageio -y
+RUN pip install imageio 
 
 RUN rm -rf /notebooks/*
 ADD *.ipynb /notebooks/
